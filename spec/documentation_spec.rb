@@ -4,6 +4,7 @@ RSpec.describe YardMarkdown do
   before(:all) do
     YardMarkdown::Generator.generate(
       github_repo: "tijmenb/yard_markdown",
+      branch: "master",
     )
 
     @generated_file = File.read("docs/readme.md")

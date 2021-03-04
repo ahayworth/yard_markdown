@@ -7,21 +7,22 @@ module YardMarkdown
     #
     # @param github_repo [String] the GitHub repo for this project, eg. "tijmenb/yard_markdown".
     #  Needed to create the "Source on GitHub" link.
+    # @param branch [String] the branch of the repo to use when generating links, eg "main" or "master".
     # @example
     #
     #   YardMarkdown::Generator.generate(
     #     github_repo: "tijmenb/yard_markdown",
     #   )
     # @see https://github.com/tijmenb/yard_markdown
-    def self.generate(github_repo:)
-      new.generate(github_repo: github_repo)
+    def self.generate(github_repo:, branch: "main")
+      new.generate(github_repo: github_repo, branch: branch)
     end
 
     # @private
-    def generate(github_repo:)
+    def generate(github_repo:, branch:)
       load_yard_database
 
-      model = ViewModel.new(github_repo)
+      model = ViewModel.new(github_repo, branch)
       content = renderer.result(model.get_binding)
 
       content.gsub!(/^$\n\n/, "\n")

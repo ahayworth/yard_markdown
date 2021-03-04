@@ -14,6 +14,10 @@ OptionParser.new do |opts|
   opts.on("-gREPO", "--github_repo=REPO", "The github repo") do |v|
     options[:github_repo] = v
   end
+
+  opts.on("-bBRANCH"< "--branch=BRANCH", "The branch to use in links") do |v|
+    options[:branch] = v
+  end
 end.parse!
 
 YardMarkdown::Generator.generate(options)

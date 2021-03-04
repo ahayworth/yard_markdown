@@ -2,13 +2,15 @@ module YardMarkdown
   # @private
   class ViewModel
     attr_reader :github_repo
+    attr_reader :branch
 
-    def initialize(github_repo)
+    def initialize(github_repo, branch)
       @github_repo = github_repo
+      @branch = branch
     end
 
     def website_base
-      "https://github.com/#{github_repo}/blob/master/"
+      "https://github.com/#{github_repo}/blob/#{branch}/"
     end
 
     def public_classes_and_modules
